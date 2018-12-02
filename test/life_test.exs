@@ -86,5 +86,13 @@ defmodule LifeTest do
 
       assert actual == [:a, :b, :c, :d, :f, :g, :h, :i]
     end
+
+    test "It ignores missing neighbors at the edges of the grid", context do
+      %{ grid: grid } = context
+
+      actual = Life.neighbors(grid, %Point{x: 0, y: 0})
+
+      assert actual == [:b, :d, :e]
+    end
   end
 end
