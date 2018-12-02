@@ -95,4 +95,11 @@ defmodule LifeTest do
       assert actual == [:b, :d, :e]
     end
   end
+
+  describe "count_alive(cells)" do
+    test "It counts the number of living cells" do
+      actual = Life.count_alive([:alive, :dead, :dead])
+      assert actual == 1
+    end
+  end
 end

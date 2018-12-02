@@ -2,13 +2,16 @@ defmodule Life do
   def advance_grid(grid) do
     for { point, cell } <- grid,
         into: %{},
-        do: advance_cell(cell, count_living_neighbors(grid, point))
+        do: advance_cell(cell, count_alive(neighbors(grid, point)))
   end
 
-  def count_living_neighbors(grid, point) do
-    neighbors(grid, point)
-      |> Enum.filter(fn cell -> cell == :alive end)
-      |> length()
+  def count_alive(cells) do
+    Enum.reduce(cells, 0, fn cell, acc ->
+        case cell do
+          :alive -> acc + 1
+          :dead  -> acc
+        end
+      end)
   end
 
   def neighbors(grid, point) do
