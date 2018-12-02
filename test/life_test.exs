@@ -62,20 +62,11 @@ defmodule LifeTest do
 
   describe "neighbors(grid, point)" do
     setup do
-      [
-        grid: %{
-          %Point{x: 0, y: 0} => :a,
-          %Point{x: 1, y: 0} => :b,
-          %Point{x: 2, y: 0} => :c,
-
-          %Point{x: 0, y: 1} => :d,
-          %Point{x: 1, y: 1} => :e,
-          %Point{x: 2, y: 1} => :f,
-
-          %Point{x: 0, y: 2} => :g,
-          %Point{x: 1, y: 2} => :h,
-          %Point{x: 2, y: 2} => :i,
-        }
+      [ grid: as_map([
+          [:a, :b, :c],
+          [:d, :e, :f],
+          [:g, :h, :i]
+        ])
       ]
     end
 
@@ -101,5 +92,28 @@ defmodule LifeTest do
       actual = Life.count_alive([:alive, :dead, :dead])
       assert actual == 1
     end
+  end
+
+  describe "advance_grid(grid)" do
+    test "Produces the grid advanced by Conway's GOL rules" do
+      actual = Life.advance_grid(as_map([
+        [:alive, :alive, :alive],
+        [:alive, :alive, :alive],
+        [:alive, :alive, :alive]
+      ]))
+
+      assert actual == as_map([
+        [:alive, :dead, :alive],
+        [:dead,  :dead, :dead],
+        [:alive, :dead, :alive]
+      ])
+    end
+  end
+
+  def as_map(array) do
+    for { row, y } <- Enum.with_index(array),
+        { cell, x } <- Enum.with_index(row),
+        into: %{},
+        do: { %Point{x: x, y: y}, cell }
   end
 end

@@ -2,7 +2,10 @@ defmodule Life do
   def advance_grid(grid) do
     for { point, cell } <- grid,
         into: %{},
-        do: advance_cell(cell, count_alive(neighbors(grid, point)))
+        do: { 
+          point,
+          advance_cell(cell, count_alive(neighbors(grid, point)))
+        }
   end
 
   def count_alive(cells) do
