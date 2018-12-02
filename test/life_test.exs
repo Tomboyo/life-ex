@@ -59,4 +59,32 @@ defmodule LifeTest do
     test "a dead cell with 8 neighbors stays dead",
       do: assert Life.advance_cell(:dead, 8) == :dead
   end
+
+  describe "neighbors(grid, point)" do
+    setup do
+      [
+        grid: %{
+          %Point{x: 0, y: 0} => :a,
+          %Point{x: 1, y: 0} => :b,
+          %Point{x: 2, y: 0} => :c,
+
+          %Point{x: 0, y: 1} => :d,
+          %Point{x: 1, y: 1} => :e,
+          %Point{x: 2, y: 1} => :f,
+
+          %Point{x: 0, y: 2} => :g,
+          %Point{x: 1, y: 2} => :h,
+          %Point{x: 2, y: 2} => :i,
+        }
+      ]
+    end
+
+    test "It collects all 8 neighbors of a cell", context do
+      %{ grid: grid } = context
+
+      actual = Life.neighbors(grid, %Point{x: 1, y: 1})
+
+      assert actual == [:a, :b, :c, :d, :f, :g, :h, :i]
+    end
+  end
 end
