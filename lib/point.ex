@@ -1,7 +1,8 @@
-@moduledoc """
-A cartesian coordinate pair
-"""
 defmodule Point do
+  @moduledoc """
+  A cartesian coordinate pair
+  """
+
   @enforce_keys [:x, :y]
   defstruct [:x, :y]
 

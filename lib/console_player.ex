@@ -1,10 +1,10 @@
-@moduledoc """
-Defines functions to render a Life grid in a loop to the console.
-
-This is a quick and cheap way to watch the Life module do its thing!
-"""
 defmodule ConsolePlayer do
-  
+  @moduledoc """
+  Defines functions to render a Life grid in a loop to the console.
+
+  This is a quick and cheap way to watch the Life module do its thing!
+  """
+
   @doc """
   Begins rendering life grids to the console, 1 per second. This starts the game
   with a Tumbler on the grid, which never dies off.

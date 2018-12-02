@@ -1,7 +1,8 @@
-@moduledoc """
-Defines functions to play Conway's Game of Life.
-"""
 defmodule Life do
+  @moduledoc """
+  Defines functions to play Conway's Game of Life.
+  """
+
   @doc """
   Create a new grid based on the given grid and the normal rules for Conway's
   Game of Life.
